@@ -27,11 +27,12 @@ class Route extends Model
         'depot_id',
         'route_code',
         'route_name',
-        'origin',
-        'destination',
+        'from_location',
+        'to_location',
         'distance_km',
         'estimated_duration',
         'active',
+        'description',
     ];
 
     /**
@@ -40,6 +41,7 @@ class Route extends Model
     protected $casts = [
         'active' => 'boolean',
         'distance_km' => 'decimal:2',
+        'estimated_duration' => 'integer',
     ];
 
     /*
@@ -122,10 +124,10 @@ class Route extends Model
     }
 
     /**
-     * Validation Logs
+     * Validator Logs
      */
-    public function validationLogs()
+    public function validatorLogs()
     {
-        return $this->hasMany(ValidationLog::class);
+        return $this->hasMany(ValidatorLog::class);
     }
 }
